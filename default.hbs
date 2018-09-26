@@ -68,15 +68,10 @@
 
 
     {{!-- jQuery + Fitvids, which makes all video embeds responsive --}}
-    <script
-        src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous">
-    </script>
+    <script type="text/javascript" src="{{asset "js/jquery.min.js"}}"></script>
     <script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
-
     {{#if pagination.pages}}
-    <script>
+    <script type="text/javascript">
         // maxPages is a global variable that is needed to determine
         // if we need to load more pages for the infinitescroll, or if
         // we reached the last page already.
@@ -90,6 +85,5 @@
 
     {{!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag --}}
     {{ghost_foot}}
-
 </body>
 </html>
