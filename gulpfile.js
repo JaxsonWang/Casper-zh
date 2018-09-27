@@ -6,6 +6,9 @@ var livereload = require('gulp-livereload');
 var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var zip = require('gulp-zip');
+var uglify = require('gulp-uglify');
+var pump = require('pump');
+var rename = require("gulp-rename");
 
 // postcss plugins
 var autoprefixer = require('autoprefixer');
@@ -24,7 +27,7 @@ var nodemonServerInit = function () {
     livereload.listen(1234);
 };
 
-gulp.task('build', ['css'], function (/* cb */) {
+gulp.task('build', ['css', 'js'], function (/* cb */) {
     return nodemonServerInit();
 });
 
@@ -37,20 +40,49 @@ gulp.task('css', function () {
         cssnano()
     ];
 
-    return gulp.src('assets/css/*.css')
-        .on('error', swallowError)
-        .pipe(sourcemaps.init())
-        .pipe(postcss(processors))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('assets/built/'))
-        .pipe(livereload());
+    pump([
+            gulp.src([
+                //'assets/css/screen.css'
+            ]).on('error', swallowError),
+            sourcemaps.init(),
+            postcss(processors),
+            rename({suffix: '.min'}),
+            sourcemaps.write('.', {
+                includeContent: true,
+                sourceRoot: '/source/css/'
+            }),
+            gulp.dest('assets/css/'),
+            livereload()
+        ]
+    );
+});
+
+gulp.task('js', function () {
+    pump([
+            gulp.src([
+                'assets/js/infinitescroll.js',
+                'assets/js/jquery.fitvids.js',
+                'assets/js/casper.js'
+            ]).on('error', swallowError),
+            sourcemaps.init(),
+            uglify(),
+            rename({suffix: '.min'}),
+            sourcemaps.write('.', {
+                includeContent: true,
+                sourceRoot: '/source/js/'
+            }),
+            gulp.dest('assets/js/'),
+            livereload()
+        ]
+    );
 });
 
 gulp.task('watch', function () {
-    gulp.watch('assets/css/**', ['css']);
+    gulp.watch('assets/css/*.css', ['css']);
+    gulp.watch('assets/js/*.js', ['js']);
 });
 
-gulp.task('zip', ['css'], function () {
+gulp.task('zip', ['css', 'js'], function () {
     var targetDir = 'dist/';
     var themeName = require('./package.json').name;
     var filename = themeName + '.zip';
