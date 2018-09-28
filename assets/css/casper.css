@@ -1,0 +1,36 @@
+.floating-header-share-qq {
+    background: #2a9bd8;
+}
+
+.floating-header-share-wechat {
+    background: #0eb359;
+}
+
+.floating-header-share-weibo {
+    background: #d31b08;
+}
+
+.floating-header-share-qq,
+.floating-header-share-wechat,
+.floating-header-share-weibo {
+    display: block;
+    -ms-flex-align: center;
+    -ms-grid-row-align: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    color: #fff;
+    line-height: 48px;
+    text-align: center;
+    transition: all .5s cubic-bezier(.19,1,.22,1);
+}
+
+@media (max-width: 900px) {
+    .floating-header-share-qq,
+    .floating-header-share-wechat,
+    .floating-header-share-weibo {
+        width: 40px;
+        height: 40px;
+        line-height: 38px;
+    }
+}

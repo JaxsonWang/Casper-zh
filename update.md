@@ -1,5 +1,5 @@
-https://github.com/TryGhost/Casper/commits/master
+https://github.com/juan-g/WorldCasper2/commits/i18n-translatable-frontend
 
-Upgrading Casper to 2.6.3
+[i18n] Updated all translations: New strings, apostrophes...
 
-Commits on Sep 25, 2018
+Commits on Sep 28, 2018

@@ -4,3 +4,5 @@ logs/
 node_modules/
 package-lock.json
 yarn.lock
+assets/css/*.min.*
+assets/js/*.min.*
