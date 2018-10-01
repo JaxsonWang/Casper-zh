@@ -35,12 +35,26 @@
     {{!-- The footer at the very bottom of the screen --}}
     <footer class="site-footer outer">
         <div class="site-footer-content inner">
-            <section class="copyright"><a href="{{@blog.url}}">{{@blog.title}}</a> &copy; {{date format="YYYY"}}</section>
+            <section class="copyright">
+                <div>
+                    <template v-if="footerBA1 !== ''">
+                        <a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow">${ footerBA1 }</a>
+                    </template>
+                    <template v-if="footerBA2 !== ''">
+                        <a v-bind:href="footerBA2URL" target="_blank" rel="nofollow">${ footerBA2 }</a>
+                    </template>
+                </div>
+                <div>
+                    <a href="{{@blog.url}}">{{@blog.title}}</a> Copyright &copy; {{date format="YYYY"}}
+                    Crafted with <a href="https://github.com/JaxsonWang/Casper-zh" target="_blank" rel="nofollow">Casper</a>
+                    Powered by <a href="https://ghost.org/zh_CN/" target="_blank" rel="nofollow">Ghost</a>
+                </div>
+            </section>
             <nav class="site-footer-nav">
-                <a href="{{@blog.url}}">{{t "Latest Posts"}}</a>
-                {{#if @blog.facebook}}<a href="{{facebook_url @blog.facebook}}" target="_blank" rel="noopener">Facebook</a>{{/if}}
-                {{#if @blog.twitter}}<a href="{{twitter_url @blog.twitter}}" target="_blank" rel="noopener">Twitter</a>{{/if}}
-                <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                <a href="{{@blog.url}}">首页</a>
+                <template v-if="footerBdhmt !== ''">
+                    <a v-bind:href="footerBdhmt" target="_blank" rel="nofollow">百度统计</a>
+                </template>
             </nav>
         </div>
     </footer>
@@ -78,6 +92,7 @@
 <script type="text/javascript" src="{{asset "js/jquery.min.js"}}"></script>
 <script type="text/javascript" src="{{asset "js/jquery.fitvids.min.js"}}"></script>
 
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>

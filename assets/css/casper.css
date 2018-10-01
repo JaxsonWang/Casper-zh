@@ -65,3 +65,20 @@
     background: rgba(0, 0, 0, 0.9);
     top: 5px;
 }
+
+.medium-zoom-image--opened {
+    z-index: 1000;
+}
+
+.medium-zoom--opened .medium-zoom-overlay {
+    background: rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.post-copyright ul {
+    margin: 2em 0 0;
+    padding: 0.5em 1em;
+    border-left: 3px solid #ff1700;
+    background-color: #f9f9f9;
+    list-style: none;
+}

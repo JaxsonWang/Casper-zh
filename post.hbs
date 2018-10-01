@@ -38,6 +38,19 @@ into the {body} of the default.hbs template --}}
                     </div>
                 </section>
 
+                <section class="post-copyright">
+                    <ul>
+                        <li class="post-copyright-author">
+                            <strong>本文作者： </strong>{{author }}</li>
+                        <li class="post-copyright-link">
+                            <strong>本文链接：</strong>
+                            <a href="{{url}}" title="{{title}}">{{url}}</a>
+                        </li>
+                        <li class="post-copyright-license">
+                            <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！</li>
+                    </ul>
+                </section>
+
                 {{!-- Email subscribe form at the bottom of the page --}}
                 {{#if @labs.subscribers}}
                     <section class="subscribe-form">
@@ -62,11 +75,11 @@ into the {body} of the default.hbs template --}}
 
                 </footer>
 
-                {{!--
-                <section class="post-full-comments">
-                    If you want to embed comments, this is a good place to do it!
-                </section>
-                --}}
+                <template v-if="valine">
+                    <section class="post-full-comments">
+                        <div id="vcomments"></div>
+                    </section>
+                </template>
 
             </article>
 
@@ -144,9 +157,9 @@ into the {body} of the default.hbs template --}}
             $postContent.fitVids();
             // End fitVids
 
-            var progressBar = document.querySelector('#reading-progress');
-            var header = document.querySelector('.floating-header');
-            var title = document.querySelector('.post-full-title');
+            var progressBar = document.querySelector("#reading-progress");
+            var header = document.querySelector(".floating-header");
+            var title = document.querySelector(".post-full-title");
 
             var lastScrollY = window.scrollY;
             var lastWindowHeight = window.innerHeight;
@@ -178,19 +191,19 @@ into the {body} of the default.hbs template --}}
 
                 // show/hide floating header
                 if (lastScrollY >= trigger + triggerOffset) {
-                    header.classList.add('floating-active');
+                    header.classList.add("floating-active");
                 } else {
-                    header.classList.remove('floating-active');
+                    header.classList.remove("floating-active");
                 }
 
-                progressBar.setAttribute('max', progressMax);
-                progressBar.setAttribute('value', lastScrollY);
+                progressBar.setAttribute("max", progressMax);
+                progressBar.setAttribute("value", lastScrollY);
 
                 ticking = false;
             }
 
-            window.addEventListener('scroll', onScroll, {passive: true});
-            window.addEventListener('resize', onResize, false);
+            window.addEventListener("scroll", onScroll, {passive: true});
+            window.addEventListener("resize", onResize, false);
 
             update();
 
