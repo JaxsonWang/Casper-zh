@@ -7,19 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 
     {{!-- Base Meta --}}
-    <title>{{meta_title page=(t " (Page %)")}}</title>
+    <title>{{meta_title page=(t " (Page %)")}}{{#is "home"}} – 关注互联网及IT科技的个人博客{{/is}}</title>
     <meta name="HandheldFriendly" content="True"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="keywords" content="淮城一只猫,淮城,IT博客,个人博客,王瑾,盒子丶先生,WEB平台,BOX-ROM,BoxMod">
 
     {{!-- Styles'n'Scripts --}}
     <link rel="stylesheet" type="text/css" href="{{asset "css/screen.min.css"}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset "css/casper.min.css"}}"/>
 
-    <!--<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/prismjs/themes/prism.min.css"/>-->
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css"/>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.css"/>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css"/>
-    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.css"/>
+    <!--dns预加载-->
+    <link rel="dns-prefetch" href="{{@blog.url}}">
+    <link rel="dns-prefetch" href="//casper.ghost.org">
+    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="//hm.baidu.com">
+    <link rel="dns-prefetch" href="//zz.bdstatic.com">
+    <link rel="dns-prefetch" href="//api.share.baidu.com">
+    <link rel="dns-prefetch" href="//push.zhanzhang.baidu.com">
 
     {{!-- This tag outputs SEO meta+structured data and other important settings --}}
     {{ghost_head}}
@@ -41,7 +45,7 @@
                         <a href="http://www.miitbeian.gov.cn" target="_blank" rel="nofollow">${ footerBA1 }</a>
                     </template>
                     <template v-if="footerBA2 !== ''">
-                        <a v-bind:href="footerBA2URL" target="_blank" rel="nofollow">${ footerBA2 }</a>
+                        <a v-bind:href="footerBA2URL" target="_blank" rel="nofollow">${footerBA2}</a>
                     </template>
                 </div>
                 <div>
@@ -93,14 +97,6 @@
 <script type="text/javascript" src="{{asset "js/jquery.fitvids.min.js"}}"></script>
 
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs/plugins/line-highlight/prism-line-highlight.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs/plugins/show-language/prism-show-language.min.js"></script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
 
 <script type="text/javascript" src="{{asset "js/casper.min.js"}}"></script>
 {{#if pagination.pages}}

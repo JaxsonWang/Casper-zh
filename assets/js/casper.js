@@ -4,22 +4,24 @@ var casper = {
     // String QQ号码
     qq: "1466469024",
     // Boolean 百度推送
-    bdPush: false,
+    bdPush: true,
     // String 百度统计ID
-    bdhmt: '',
+    bdhmt: "37d3bf3116f041cb10bd1d890e65bcfc",
     // String 页脚百度统计链接 例如：https://tongji.baidu.com/web/10921506/overview/index?siteId=12616599
-    footerBdhmt: 'https://tongji.baidu.com/web/10921506/overview/index?siteId=12616599',
+    footerBdhmt: "https://tongji.baidu.com/web/10921506/overview/index?siteId=11569818",
     // String 备案号 例如：苏ICP备15050739号-4
-    footerBA1: '苏ICP备15050739号-4',
+    footerBA1: "苏ICP备15050739号-4",
     // String 备案号 例如：苏公网安备32010402000196号
-    footerBA2: '苏公网安备32010402000196号',
+    footerBA2: "苏公网安备32010402000196号",
+    // String 备案号 网站描述
+    myDescription: "永远年轻，永远热泪盈眶",
 
     // Boolean 是否开启valine评论支持
-    valine: true,
+    valine: false,
     // String 参考：https://valine.js.org/quickstart.html#%E8%8E%B7%E5%8F%96APP-ID-%E5%92%8C-APP-Key
-    valineAppId: "mWCLNEwkFdkWoVvyk2KzTBRv-gzGzoHs",
+    valineAppId: "rEDT0uBB2LEdndoJ4od2SlKf-gzGzoHsz",
     // String 参考：https://valine.js.org/quickstart.html#%E8%8E%B7%E5%8F%96APP-ID-%E5%92%8C-APP-Key
-    valineAppKey: "l2VQhynNxixHBGfhPiwbKMvv",
+    valineAppKey: "lmX57j7hrYGCHROA72tBUIXq",
     // Boolean 评论回复邮件提醒 参考：https://valine.js.org/notify.html
     valineNotify: false,
     // Boolean 验证码服务
@@ -27,13 +29,22 @@ var casper = {
     // String 评论框占位提示符
     valinePlaceholder: "支持Markdown评论",
 
+    // Boolean Prism语法高亮
+    prism: true,
+    // Boolean Prism 展示行号
+    prismLineNumbers: true,
+    // Boolean Prism 展示语法类型
+    prismShowLanguage: true,
+    // Boolean Prism 粘贴剪切板
+    prismCopy: true,
+
 };
 
 var defaultCasper = {
-    footerBA2URL: ''
+    footerBA2URL: ""
 };
 
-casper = jQuery.extend(casper,defaultCasper);
+casper = jQuery.extend(casper, defaultCasper);
 
 var vm = new Vue({
     el: "#casper",
@@ -50,31 +61,31 @@ var vm = new Vue({
         this.footerBA2URL = "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=" + this.getDigital(this.footerBA2);
 
         //百度推送
-        if ( this.bdPush ) {
-            var bp = document.createElement('script');
-            var curProtocol = window.location.protocol.split(':')[0];
-            if (curProtocol === 'https') {
-                bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        if (this.bdPush) {
+            var bp = document.createElement("script");
+            var curProtocol = window.location.protocol.split(":")[0];
+            if (curProtocol === "https") {
+                bp.src = "https://zz.bdstatic.com/linksubmit/push.js";
             }
             else {
-                bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+                bp.src = "http://push.zhanzhang.baidu.com/push.js";
             }
             var bdPush = document.getElementsByTagName("script")[0];
             bdPush.parentNode.insertBefore(bp, bdPush);
         }
         //百度统计
-        if ( this.bdhmt !== "" ) {
+        if (this.bdhmt !== "") {
             var hm = document.createElement("script");
             hm.src = "https://hm.baidu.com/hm.js?37d3bf3116f041cb10bd1d890e65bcfc";
             var bdhmt = document.getElementsByTagName("script")[0];
             bdhmt.parentNode.insertBefore(hm, bdhmt);
         }
         //valine评论支持
-        if( this.valine ) {
-            loadScript("//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js",function () {
-                loadScript("//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js",function () {
+        if (this.valine) {
+            loadScript("//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js", function () {
+                loadScript("//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js", function () {
                     new Valine({
-                        el: "#vcomments" ,
+                        el: "#vcomments",
                         appId: casper.valineAppId,
                         appKey: casper.valineAppKey,
                         notify: casper.valineNotify,
@@ -85,21 +96,40 @@ var vm = new Vue({
                 });
             });
         }
+        //Prism高亮支持
+        if (this.prism) {
+            loadScript("//cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js");
+            loadCSS("//cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css");
+            loadScript("//cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js", function () {
+                //将html代码块支持高亮
+                jQuery(".post-content pre code").attr("class", function (i, clazz) {
+                    return clazz.replace(/language-html/g, "language-markup");
+                });
+                //设置高亮语言样式文件地址
+                Prism.plugins.autoloader.languages_path = "//cdn.jsdelivr.net/npm/prismjs/components/";
+            });
+            //行号
+            if (this.prismLineNumbers) {
+                loadCSS("//cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css");
+                loadScript("//cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js");
+                //支持行号显示
+                jQuery(".post-content pre").addClass("line-numbers");
+            }
+            //显示语言或者粘贴
+            if (this.prismShowLanguage || this.prismCopy) {
+                loadCSS("//cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.css");
+                loadScript("//cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js");
+                if (this.prismShowLanguage) {
+                    loadScript("//cdn.jsdelivr.net/npm/prismjs/plugins/show-language/prism-show-language.min.js");
+                }
+                if (this.prismCopy) {
+                    loadScript("//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js");
+                    loadScript("//cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js");
+                }
+            }
+        }
     }
 });
-
-/**
- * 代码块生效
- */
-//将html代码块支持高亮
-jQuery(".post-content pre code").attr("class", function (i, cls) {
-    return cls.replace(/language-html/g, "language-markup");
-});
-//支持行号显示
-jQuery(".post-content pre").addClass("line-numbers");
-//设置高亮语言样式文件地址
-Prism.plugins.autoloader.languages_path = "//cdn.jsdelivr.net/npm/prismjs/components/";
-
 
 /**
  * 回到顶部
@@ -219,4 +249,4 @@ var loadFiles = {
     css: []
 };
 
-console.log("已经动态加载资源：",loadFiles);
+console.log("已经动态加载资源：", loadFiles);
