@@ -22,10 +22,6 @@ var casper = {
     valineAppId: "rEDT0uBB2LEdndoJ4od2SlKf-gzGzoHsz",
     // String 参考：https://valine.js.org/quickstart.html#%E8%8E%B7%E5%8F%96APP-ID-%E5%92%8C-APP-Key
     valineAppKey: "lmX57j7hrYGCHROA72tBUIXq",
-    // Boolean 评论回复邮件提醒 参考：https://valine.js.org/notify.html
-    valineNotify: false,
-    // Boolean 验证码服务
-    valineVerify: false,
     // String 评论框占位提示符
     valinePlaceholder: "支持Markdown评论",
 
