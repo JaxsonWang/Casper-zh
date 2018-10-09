@@ -39,6 +39,10 @@
     width: 100%;
 }
 
+.post-content pre {
+    font-size: 16px;
+}
+
 #return-to-top {
     position: fixed;
     bottom: 50px;
@@ -81,8 +85,4 @@
     border-left: 3px solid #ff1700;
     background-color: #f9f9f9;
     list-style: none;
-}
-
-.post-full-comments .valine .vlist .text-wrapper .vcomment img.smile {
-    width: 35px;
 }

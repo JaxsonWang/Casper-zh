@@ -1,5 +1,5 @@
 https://github.com/juan-g/WorldCasper2/commits/i18n-translatable-frontend
 
-[i18n] Updated all translations: New strings, apostrophes...
+Merge pull request #36 from matthias-vogt/patch-1
 
-Commits on Sep 28, 2018
+Commits on Sep 29, 2018
