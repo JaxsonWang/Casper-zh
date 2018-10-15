@@ -66,7 +66,9 @@ var vm = new Vue({
             loadScript("//cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js", function () {
                 //将html代码块支持高亮
                 jQuery(".post-content pre code").attr("class", function (i, clazz) {
-                    return clazz.replace(/language-html/g, "language-markup");
+                    if(clazz !== undefined ) {
+                        return clazz.replace(/language-html/g, "language-markup");
+                    }
                 });
                 //设置高亮语言样式文件地址
                 if (window.Prism !== "undefined") {
