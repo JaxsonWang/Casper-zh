@@ -104,33 +104,42 @@ var vm = new Vue({
     }
 });
 
-/**
- * 回到顶部
- */
-jQuery(window).scroll(function () {
-    if ($(this).scrollTop() >= 50) {
-        $("#return-to-top").fadeIn(200);
-    } else {
-        $("#return-to-top").fadeOut(200);
-    }
-});
-$("#return-to-top").click(function () {
-    $("body,html").animate({
-        scrollTop: 0
-    }, 500);
-});
-
-/**
- * 评论跳转
- */
-if(window.location.hash){
-    var checkExist = setInterval(function() {
-        if ($(window.location.hash).length) {
-            $('html, body').animate({scrollTop: $(window.location.hash).offset().top-90}, 1000);
-            clearInterval(checkExist);
+jQuery(document).ready(function () {
+    /**
+     * 回到顶部
+     */
+    jQuery(window).scroll(function () {
+        if ($(this).scrollTop() >= 50) {
+            $("#return-to-top").fadeIn(200);
+        } else {
+            $("#return-to-top").fadeOut(200);
         }
-    }, 100);
-}
+    });
+    $("#return-to-top").click(function () {
+        $("body,html").animate({
+            scrollTop: 0
+        }, 500);
+    });
+
+    /**
+     * 评论跳转
+     */
+    if(window.location.hash){
+        var checkExist = setInterval(function() {
+            if ($(window.location.hash).length) {
+                $('html, body').animate({scrollTop: $(window.location.hash).offset().top-90}, 1000);
+                clearInterval(checkExist);
+            }
+        }, 100);
+    }
+
+    var loadFiles = {
+        js: [],
+        css: []
+    };
+
+    console.log("已经动态加载资源：", loadFiles);
+});
 
 /**
  * 时间转换
@@ -223,10 +232,3 @@ function loadCSS(fileName, callback, into) {
         document.body.appendChild(css);
     }
 }
-
-var loadFiles = {
-    js: [],
-    css: []
-};
-
-console.log("已经动态加载资源：", loadFiles);
