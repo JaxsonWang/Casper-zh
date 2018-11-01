@@ -7,6 +7,7 @@ var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var zip = require('gulp-zip');
 var uglify = require('gulp-uglify');
+var filter = require('gulp-filter');
 var pump = require('pump');
 var rename = require("gulp-rename");
 
@@ -31,6 +32,8 @@ gulp.task('build', ['css', 'js'], function (/* cb */) {
     return nodemonServerInit();
 });
 
+gulp.task('generate', ['css', 'js']);
+
 gulp.task('css', function () {
     var processors = [
         easyimport,
@@ -42,7 +45,8 @@ gulp.task('css', function () {
 
     pump([
             gulp.src([
-                'assets/css/casper.css'
+                'assets/css/casper.css',
+                'assets/css/screen.css',
             ]).on('error', swallowError),
             sourcemaps.init(),
             postcss(processors),
