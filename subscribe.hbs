@@ -37,7 +37,7 @@
                                     </g>
                                 </g>
                             </svg>
-                            {{t "Back"}}
+                            返回
                         </a>
                     </nav>
                 </header>
@@ -53,17 +53,17 @@
                                 form_class="gh-signin"
                                 input_class="gh-input"
                                 button_class="gh-btn gh-btn-blue gh-btn-block"
-                                placeholder=(t "Your email address")
+                                placeholder="你的email地址"
                                 autofocus="true"
                             }}
                         {{else}}
                             <header>
-                                <h1>{{t "Subscribed!"}}</h1>
+                                <h1>已经订阅！</h1>
                             </header>
 
                             <p>
-                                {{t "You’ve successfully subscribed to"}} <em>{{@blog.title}}</em>
-                                {{t "with the email address"}} <em>{{email}}</em>.
+                                你已经成功订阅了 <em>{{@blog.title}}</em>
+                                在此邮箱 <em>{{email}}</em>.
                             </p>
                         {{/if}}
                     </section>
