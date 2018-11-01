@@ -7,7 +7,6 @@ var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var zip = require('gulp-zip');
 var uglify = require('gulp-uglify');
-var filter = require('gulp-filter');
 var pump = require('pump');
 var rename = require("gulp-rename");
 
