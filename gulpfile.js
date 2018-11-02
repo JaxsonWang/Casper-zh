@@ -7,7 +7,8 @@ var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var zip = require('gulp-zip');
 var uglify = require('gulp-uglify');
-var pump = require('pump');
+var filter = require('gulp-filter');
+
 var rename = require("gulp-rename");
 
 // postcss plugins
@@ -35,54 +36,52 @@ gulp.task('generate', ['css', 'js']);
 
 gulp.task('css', function () {
     var processors = [
-        easyimport,
-        customProperties,
+        easyimport(),
+        customProperties(),
         colorFunction(),
         autoprefixer({browsers: ['last 2 versions']}),
         cssnano()
     ];
 
-    pump([
-            gulp.src([
-                'assets/css/casper.css',
-                'assets/css/screen.css',
-            ]).on('error', swallowError),
-            sourcemaps.init(),
-            postcss(processors),
-            rename({suffix: '.min'}),
-            sourcemaps.write('.', {
-                includeContent: true,
-                sourceRoot: '/source/css/'
-            }),
-            gulp.dest('assets/css/'),
-            livereload()
-        ]
-    );
+    return gulp.src([
+        'assets/css/casper.css',
+        'assets/css/screen.css'])
+        .on('error', swallowError)
+        .pipe(sourcemaps.init())
+        .pipe(postcss(processors))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(sourcemaps.write('.', {
+            includeContent: true,
+            sourceRoot: '/source/css/'
+        }))
+        .pipe(gulp.dest('assets/css/'))
+        .pipe(livereload())
 });
 
 gulp.task('js', function () {
-    pump([
-            gulp.src([
-                'assets/js/infinitescroll.js',
-                'assets/js/jquery.fitvids.js',
-                'assets/js/casper.js'
-            ]).on('error', swallowError),
-            sourcemaps.init(),
-            uglify(),
-            rename({suffix: '.min'}),
-            sourcemaps.write('.', {
-                includeContent: true,
-                sourceRoot: '/source/js/'
-            }),
-            gulp.dest('assets/js/'),
-            livereload()
-        ]
-    );
+    var jsFilter = filter(['**/*.js'], {restore: true});
+
+    return gulp.src([
+        'assets/js/infinitescroll.js',
+        'assets/js/jquery.fitvids.js',
+        'assets/js/casper.js'
+    ]).on('error', swallowError)
+        .pipe(sourcemaps.init())
+        .pipe(jsFilter)
+        .pipe(uglify())
+        .pipe(jsFilter.restore)
+        .pipe(rename({suffix: '.min'}))
+        .pipe(sourcemaps.write('.', {
+            includeContent: true,
+            sourceRoot: '/source/js/'
+        }))
+        .pipe(gulp.dest('assets/js/'))
+        .pipe(livereload())
 });
 
 gulp.task('watch', function () {
-    gulp.watch('assets/css/*.css', ['css']);
-    gulp.watch('assets/js/*.js', ['js']);
+    gulp.watch('assets/css/casper.css', ['css']);
+    gulp.watch('assets/js/casper.js', ['js']);
 });
 
 gulp.task('zip', ['css', 'js'], function () {

@@ -2,7 +2,7 @@ var casper = {
     // String 微博链接
     weibo: "http://weibo.com/JaxsonWang",
     // String QQ号码
-    qq: "1466469024",
+    qq: "#",
     // Boolean 百度推送
     bdPush: true,
     // String 百度统计ID
@@ -15,6 +15,10 @@ var casper = {
     footerBA2: "苏公网安备32010402000196号",
     // String 网站描述
     myDescription: "永远年轻，永远热泪盈眶",
+    // String 支付宝二维码地址
+    aliPayDonate: "https://img.alicdn.com/imgextra/i4/2038135983/O1CN011u4G8M87EOv3N6Q_!!2038135983.jpg",
+    // String 微信二维码地址
+    weChatDonate: "https://img.alicdn.com/imgextra/i1/2038135983/O1CN012t8d2E1u4G8KbRFYp_!!2038135983.png",
 
     // Boolean 是否开启valine评论支持
     valine: true,

@@ -86,3 +86,82 @@
     background-color: #f9f9f9;
     list-style: none;
 }
+
+.post-donate {
+    text-align: center;
+}
+
+.post-donate svg {
+    width: 50px;
+}
+
+.post-donate .modal {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    position: fixed;
+    top: 30%;
+    left: 0;
+    right: 0;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+}
+.post-donate .modal-close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.post-donate .modal-close-btn svg {
+    width: 16px;
+    position: relative;
+    bottom: 2.5px;
+}
+
+.post-donate .overlay {
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.post-donate .is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    z-index: 100;
+}
+
+.post-donate .donate-img {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.post-donate .donate-img figure {
+    width: 50%;
+}
+
+.post-donate .donate-img figcaption {
+    font-size: 16px;
+}
+
+@media (max-width: 900px) {
+    .post-donate .modal {
+        width: 320px;
+    }
+
+    .post-donate .donate-img figcaption {
+        font-size: 12px;
+    }
+}

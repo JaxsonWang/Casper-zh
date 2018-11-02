@@ -38,6 +38,27 @@ into the {body} of the default.hbs template --}}
                     </div>
                 </section>
 
+                <section class="post-donate">
+                    <a href="javascript:" id="btn-modal" title="如果觉得文章很好请给个赞赏哦！" v-on:click="openDonate">{{> "icons/donate"}}</a>
+
+                    <div class="overlay" id="overlay" v-bind:class="{ 'is-visible':isVisible }" v-on:click="closeDonate"></div>
+                    <div class="modal" id="modal" v-bind:class="{ 'is-visible':isVisible }">
+                        <button class="modal-close-btn" id="close-btn" title="关闭" v-on:click="closeDonate">
+                            {{> "icons/close"}}
+                        </button>
+                        <div class="donate-img">
+                            <figure>
+                                <img v-bind:src="aliPayDonate" alt="支付宝捐赠" title="请使用支付宝扫一扫进行捐赠">
+                                <figcaption>请使用支付宝扫一扫进行捐赠</figcaption>
+                            </figure>
+                            <figure>
+                                <img v-bind:src="weChatDonate"  alt="微信捐赠" title="请使用微信扫一扫进行赞赏">
+                                <figcaption>请使用微信扫一扫进行赞赏</figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </section>
+
                 <section class="post-copyright">
                     <ul>
                         <li class="post-copyright-author">
@@ -54,7 +75,7 @@ into the {body} of the default.hbs template --}}
                 {{!-- Email subscribe form at the bottom of the page --}}
                 {{#if @labs.subscribers}}
                     <section class="subscribe-form">
-                        <h3 class="subscribe-form-title">{{t "Subscribe to {blogtitle}" blogtitle=@blog.title}}</h3>
+                        <h3 class="subscribe-form-title">{{t "订阅{blogtitle}" blogtitle=@blog.title}}</h3>
                         <p>最新文章直达邮箱</p>
                         {{subscribe_form placeholder=(t "youremail@example.com")}}
                     </section>
@@ -116,7 +137,7 @@ into the {body} of the default.hbs template --}}
                                     </ul>
                                 </div>
                                 <footer class="read-next-card-footer">
-                                    <a href="{{#../primary_tag}}{{url}}{{/../primary_tag}}">{{plural meta.pagination.total empty=(t "No posts") singular=(t "1 post") plural=(t "See all % posts")}} →</a>
+                                    <a href="{{#../primary_tag}}{{url}}{{/../primary_tag}}">{{plural meta.pagination.total empty=(t "没有文章") singular=(t "1篇文章") plural=(t "查看所有%篇文章")}} →</a>
                                 </footer>
                             </article>
                         {{/if}}

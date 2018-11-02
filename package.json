@@ -35,22 +35,22 @@
     },
     "bugs": "https://github.com/JaxsonWang/Casper-zh/issues",
     "devDependencies": {
-        "autoprefixer": "6.3.6",
-        "cssnano": "^4.1.3",
+        "autoprefixer": "^9.3.1",
+        "cssnano": "^4.1.7",
         "gscan": "^2.0.0",
-        "gulp": "^3.9.1",
+        "gulp": "3.9.1",
+        "gulp-filter": "5.1.0",
         "gulp-livereload": "^4.0.0",
         "gulp-postcss": "^8.0.0",
         "gulp-rename": "^1.4.0",
         "gulp-sourcemaps": "^2.6.4",
-        "gulp-uglify": "^3.0.1",
+        "gulp-uglify": "3.0.1",
         "gulp-util": "^3.0.8",
         "gulp-watch": "^5.0.1",
         "gulp-zip": "^4.2.0",
-        "postcss-color-function": "^4.0.1",
-        "postcss-custom-properties": "^8.0.6",
-        "postcss-easy-import": "^3.0.0",
-        "pump": "^3.0.0"
+        "postcss-color-function": "2.0.1",
+        "postcss-custom-properties": "5.0.1",
+        "postcss-easy-import": "^3.0.0"
     },
     "config": {
         "posts_per_page": 25
