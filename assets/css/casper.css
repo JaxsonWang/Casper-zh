@@ -98,7 +98,6 @@
 .post-donate .modal {
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.3s;
     position: fixed;
     top: 30%;
     left: 0;
@@ -125,7 +124,6 @@
 .post-donate .overlay {
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.3s;
     position: fixed;
     top: 0;
     left: 0;

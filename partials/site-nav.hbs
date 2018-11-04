@@ -13,10 +13,10 @@
     </div>
     <div class="site-nav-right">
         <div class="social-links">
-            <template v-if="weibo !== ''">
+            <template v-if="weibo">
                 <a class="social-link social-link-weibo" v-bind:href="weibo" title="新浪微博" target="_blank" rel="noopener">{{> "icons/weibo"}}</a>
             </template>
-            <template v-if="qq !== ''">
+            <template v-if="qq">
                 <a class="social-link social-link-qq" v-bind:href="qq" title="腾讯QQ" target="_blank" rel="noopener">{{> "icons/qq"}}</a>
             </template>
             {{#if @blog.twitter}}
