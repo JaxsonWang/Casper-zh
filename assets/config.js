@@ -37,6 +37,11 @@ var casper = {
     prismShowLanguage: true,
     // Boolean Prism 粘贴剪切板
     prismCopy: true,
+    // String Prism 代码主题风格：参考https://prismjs.com/download.html Themes
+    // 选填：空值(默认主题)，dark, funky, okaidia, twilight, coy, solarizedlight, tomorrow, customize(自定义样式脚本url地址)
+    prismTheme: 'coy',
+    // String Prism 自定义主题风格地址 仅在上面选项为"customize"生效
+    prismThemeUrl: '',
 
     // Boolean 图箱
     mediumZoom: true,
