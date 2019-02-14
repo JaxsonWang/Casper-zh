@@ -1,7 +1,7 @@
 <section class="post-full-authors">
 
     <div class="post-full-authors-content">
-        <p>{{t "This post was a collaboration between"}}</p>
+        <p>This post was a collaboration between</p>
         <p>{{authors}}</p>
     </div>
 
@@ -12,7 +12,7 @@
             <div class="author-card">
                 <div class="basic-info">
                     {{#if profile_image}}
-                        <img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" />
+                        <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
                     {{else}}
                         <div class="author-profile-image">{{> "icons/avatar"}}</div>
                     {{/if}}
@@ -21,15 +21,17 @@
                 <div class="bio">
                     {{#if bio}}
                         <p>{{bio}}</p>
-                        <p>{{{t "<a href='{url}'>更多文章</a> by {name}" url=(url) name=name}}}.</p>
+                        <p><a href="{{url}}">更多文章</a> by {{name}}.</p>
                     {{else}}
-                        <p>{{{t "阅读此作者的<a href='{url}'>更多文章</a>" url=(url)}}}.</p>
+                        <p>阅读此作者的<a href="{{url}}">更多文章</a></p>
                     {{/if}}
                 </div>
             </div>
 
             {{#if profile_image}}
-                <a href="{{url}}" class="moving-avatar"><img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" /></a>
+                <a href="{{url}}" class="moving-avatar">
+                    <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+                </a>
             {{else}}
                 <a href="{{url}}" class="moving-avatar author-profile-image">{{> "icons/avatar"}}</a>
             {{/if}}

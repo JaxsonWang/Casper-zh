@@ -49,7 +49,7 @@
     right: 80px;
     display: none;
     transition: all 0.3s ease;
-    z-index: 100;
+    z-index: 101;
 }
 
 #return-to-top svg {

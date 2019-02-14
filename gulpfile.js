@@ -1,14 +1,14 @@
 var gulp = require('gulp');
+var pump = require('pump');
 
 // gulp plugins and utils
-var gutil = require('gulp-util');
 var livereload = require('gulp-livereload');
 var postcss = require('gulp-postcss');
 var sourcemaps = require('gulp-sourcemaps');
 var zip = require('gulp-zip');
 var uglify = require('gulp-uglify');
 var filter = require('gulp-filter');
-
+var beeper = require('beeper');
 var rename = require("gulp-rename");
 
 // postcss plugins
@@ -18,15 +18,18 @@ var cssnano = require('cssnano');
 var customProperties = require('postcss-custom-properties');
 var easyimport = require('postcss-easy-import');
 
-var swallowError = function swallowError(error) {
-    gutil.log(error.toString());
-    gutil.beep();
-    this.emit('end');
-};
-
 var nodemonServerInit = function () {
     livereload.listen(1234);
 };
+
+function handleError(done) {
+    return function (err) {
+        if (err) {
+            beeper();
+        }
+        return done(err);
+    };
+}
 
 gulp.task('build', ['css', 'js'], function (/* cb */) {
     return nodemonServerInit();
@@ -34,68 +37,72 @@ gulp.task('build', ['css', 'js'], function (/* cb */) {
 
 gulp.task('generate', ['css', 'js']);
 
-gulp.task('css', function () {
+gulp.task('css', function (done) {
     var processors = [
-        easyimport(),
-        customProperties(),
+        easyimport,
+        customProperties,
         colorFunction(),
         autoprefixer({browsers: ['last 2 versions']}),
         cssnano()
     ];
 
-    return gulp.src([
-        'assets/css/casper.css',
-        'assets/css/screen.css'])
-        .on('error', swallowError)
-        .pipe(sourcemaps.init())
-        .pipe(postcss(processors))
-        .pipe(rename({suffix: '.min'}))
-        .pipe(sourcemaps.write('.', {
+    pump([
+        gulp.src([
+            'assets/css/screen.css'
+        ]),
+        sourcemaps.init(),
+        postcss(processors),
+        rename({suffix: '.min'}),
+        sourcemaps.write('.', {
             includeContent: true,
             sourceRoot: '/source/css/'
-        }))
-        .pipe(gulp.dest('assets/css/'))
-        .pipe(livereload())
+        }),
+        gulp.dest('assets/css/'),
+        livereload()
+    ], handleError(done));
 });
 
-gulp.task('js', function () {
+gulp.task('js', function (done) {
     var jsFilter = filter(['**/*.js'], {restore: true});
 
-    return gulp.src([
-        'assets/js/infinitescroll.js',
-        'assets/js/jquery.fitvids.js',
-        'assets/js/casper.js'
-    ]).on('error', swallowError)
-        .pipe(sourcemaps.init())
-        .pipe(jsFilter)
-        .pipe(uglify())
-        .pipe(jsFilter.restore)
-        .pipe(rename({suffix: '.min'}))
-        .pipe(sourcemaps.write('.', {
+    pump([
+        gulp.src([
+            'assets/js/infinitescroll.js',
+            'assets/js/jquery.fitvids.js',
+            'assets/js/casper.js'
+        ]),
+        sourcemaps.init(),
+        jsFilter,
+        uglify(),
+        jsFilter.restore,
+        rename({suffix: '.min'}),
+        sourcemaps.write('.', {
             includeContent: true,
             sourceRoot: '/source/js/'
-        }))
-        .pipe(gulp.dest('assets/js/'))
-        .pipe(livereload())
+        }),
+        gulp.dest('assets/js/'),
+        livereload()
+    ], handleError(done));
 });
 
 gulp.task('watch', function () {
-    gulp.watch('assets/css/casper.css', ['css']);
-    gulp.watch('assets/js/casper.js', ['js']);
+    gulp.watch('assets/css/**', ['css']);
 });
 
-gulp.task('zip', ['css', 'js'], function () {
+gulp.task('zip', ['css', 'js'], function (done) {
     var targetDir = 'dist/';
     var themeName = require('./package.json').name;
     var filename = themeName + '.zip';
 
-    return gulp.src([
-        '**',
-        '!node_modules', '!node_modules/**',
-        '!dist', '!dist/**'
-    ])
-        .pipe(zip(filename))
-        .pipe(gulp.dest(targetDir));
+    pump([
+        gulp.src([
+            '**',
+            '!node_modules', '!node_modules/**',
+            '!dist', '!dist/**'
+        ]),
+        zip(filename),
+        gulp.dest(targetDir)
+    ], handleError(done));
 });
 
 gulp.task('default', ['build'], function () {

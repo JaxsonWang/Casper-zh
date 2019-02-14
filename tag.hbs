@@ -1,23 +1,22 @@
 {{!< default}}
 {{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
 
-{{!-- The big featured header, it uses blog cover image as a BG if available --}}
 {{#tag}}
-    <header class="site-header outer {{#if feature_image}}" style="background-image: url({{feature_image}}){{else}}no-cover{{/if}}">
-        <div class="inner">
-            {{> "site-nav"}}
-            <div class="site-header-content">
-                <h1 class="site-title">{{name}}</h1>
-                <h2 class="site-description">
-                    {{#if description}}
-                        {{description}}
-                    {{else}}
-                        {{plural ../pagination.total empty=(t "文章集合") singular=(t "共1篇文章") plural=(t "共%篇文章")}}
-                    {{/if}}
-                </h2>
-            </div>
+{{> header background=feature_image}} {{!--Special header.hbs partial to generate the <header> tag--}}
+    <div class="inner">
+        {{> "site-nav"}}
+        <div class="site-header-content">
+            <h1 class="site-title">{{name}}</h1>
+            <h2 class="site-description">
+                {{#if description}}
+                    {{description}}
+                {{else}}
+                    A collection of {{plural ../pagination.total empty='文章集合' singular='% 篇文章' plural='% 篇文章'}}
+                {{/if}}
+            </h2>
         </div>
-    </header>
+    </div>
+</header>
 {{/tag}}
 
 {{!-- The main content area --}}
@@ -25,7 +24,7 @@
     <div class="inner">
         <div class="post-feed">
             {{#foreach posts}}
-            {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+                {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
                 {{> "post-card"}}
             {{/foreach}}
         </div>

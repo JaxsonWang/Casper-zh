@@ -3,7 +3,7 @@
 
 <section class="author-card">
     {{#if profile_image}}
-        <img class="author-profile-image" src="{{profile_image}}" alt="{{name}}" />
+        <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
     {{else}}
         <span class="avatar-wrapper">{{> "icons/avatar"}}</span>
     {{/if}}
@@ -12,12 +12,12 @@
         {{#if bio}}
             <p>{{bio}}</p>
         {{else}}
-            <p>{{{t "阅读此作者的<a href='{url}'>更多文章</a>" url=(url)}}}.</p>
+            <p>阅读此作者的<a href="{{url}}">更多文章</a></p>
         {{/if}}
     </section>
 </section>
 <div class="post-full-footer-right">
-    <a class="author-card-button" href="{{url}}">阅读更多</a>
+    <a class="author-card-button" href="{{url}}">Read More</a>
 </div>
 
 {{/primary_author}}

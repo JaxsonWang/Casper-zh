@@ -1,64 +1,66 @@
 # Casper
 
-这是一份Casper中文本地化主题。
+The default theme for [Ghost](http://github.com/tryghost/ghost/). This is the latest development version of Casper. If you're just looking to download the latest release, head over to the [releases](https://github.com/TryGhost/Casper/releases) page.
 
-### 特色
+&nbsp;
 
-- 本地字符串
-- 中国社交分享
-- 统计展示功能
-- Markdown评论系统
-- Prism.js语法高亮
-- 图片放大展示
-- ...
+![screenshot-desktop](https://user-images.githubusercontent.com/120485/27221326-1e31d326-5280-11e7-866d-82d550a7683b.jpg)
 
-### 使用方法
+&nbsp;
 
-请打开`[path to]/conten/themes/casper/assets/config.js`文件进行配置：
+# First time using a Ghost theme?
 
-```javascript
-var casper = {
-    // String 微博链接
-    weibo: "",
-    // String QQ号码
-    qq: "",
-    // Boolean 百度推送
-    bdPush: true,
-    // String 百度统计ID
-    bdhmt: "",
-    // String 页脚百度统计链接 例如：https://tongji.baidu.com/web/10921506/overview/index?siteId=12616599
-    footerBdhmt: "",
-    // String 备案号 例如：苏ICP备15050739号-4
-    footerBA1: "",
-    // String 备案号 例如：苏公网安备32010402000196号
-    footerBA2: "",
-    // String 网站描述
-    myDescription: "永远年轻，永远热泪盈眶",
+Ghost uses a simple templating language called [Handlebars](http://handlebarsjs.com/) for its themes.
 
-    // Boolean 是否开启valine评论支持
-    valine: true,
-    // String 参考：https://valine.js.org/quickstart.html#%E8%8E%B7%E5%8F%96APP-ID-%E5%92%8C-APP-Key
-    valineAppId: "",
-    // String 参考：https://valine.js.org/quickstart.html#%E8%8E%B7%E5%8F%96APP-ID-%E5%92%8C-APP-Key
-    valineAppKey: "",
-    // Boolean 评论回复邮件提醒 参考：https://valine.js.org/notify.html
-    valineNotify: false,
-    // Boolean 验证码服务
-    valineVerify: false,
-    // String 评论框占位提示符
-    valinePlaceholder: "支持Markdown评论",
+We've documented our default theme pretty heavily so that it should be fairly easy to work out what's going on just by reading the code and the comments. Once you feel comfortable with how everything works, we also have full [theme API documentation](https://themes.ghost.org) which explains every possible Handlebars helper and template.
 
-    // Boolean Prism语法高亮
-    prism: true,
-    // Boolean Prism 展示行号
-    prismLineNumbers: true,
-    // Boolean Prism 展示语法类型
-    prismShowLanguage: true,
-    // Boolean Prism 粘贴剪切板
-    prismCopy: true,
+**The main files are:**
 
-    // Boolean 图箱
-    mediumZoom: true,
-};
+- `default.hbs` - The main template file
+- `index.hbs` - Used for the home page
+- `post.hbs` - Used for individual posts
+- `page.hbs` - Used for individual pages
+- `tag.hbs` - Used for tag archives
+- `author.hbs` - Used for author archives
+
+One really neat trick is that you can also create custom one-off templates just by adding the slug of a page to a template file. For example:
+
+- `page-about.hbs` - Custom template for the `/about/` page
+- `tag-news.hbs` - Custom template for `/tag/news/` archive
+- `author-ali.hbs` - Custom template for `/author/ali/` archive
+
+
+# Development
+
+Casper styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You'll need [Node](https://nodejs.org/), [Yarn](https://yarnpkg.com/) and [Gulp](https://gulpjs.com) installed globally. After that, from the theme's root directory:
+
+```bash
+$ yarn install
+$ yarn dev
 ```
 
+Now you can edit `/assets/css/` files, which will be compiled to `/assets/` automatically.
+
+The `zip` Gulp task packages the theme files into `dist/<theme-name>.zip`, which you can then upload to your site.
+
+```bash
+$ yarn zip
+```
+
+# PostCSS Features Used
+
+- Autoprefixer - Don't worry about writing browser prefixes of any kind, it's all done automatically with support for the latest 2 major versions of every browser.
+- Variables - Simple pure CSS variables
+- [Color Function](https://github.com/postcss/postcss-color-function)
+
+
+# SVG Icons
+
+Casper uses inline SVG icons, included via Handlebars partials. You can find all icons inside `/partials/icons`. To use an icon just include the name of the relevant file, eg. To include the SVG icon in `/partials/icons/rss.hbs` - use `{{> "icons/rss"}}`.
+
+You can add your own SVG icons in the same manner.
+
+
+# Copyright & License
+
+Copyright (c) 2013-2019 Ghost Foundation - Released under the [MIT license](LICENSE).

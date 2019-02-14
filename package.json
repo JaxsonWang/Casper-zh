@@ -1,16 +1,23 @@
 {
-    "name": "casper-zh",
+    "name": "casper",
     "description": "The default personal blogging theme for Ghost. Beautiful, minimal and responsive.",
     "demo": "https://demo.ghost.io",
-    "version": "2.7.0",
+    "version": "2.9.2",
     "engines": {
-        "ghost": ">=2.0.0"
+        "ghost": ">=2.0.0",
+        "ghost-api": "v2"
     },
     "license": "MIT",
+    "screenshots": {
+        "desktop": "assets/screenshot-desktop.jpg",
+        "mobile": "assets/screenshot-mobile.jpg"
+    },
     "scripts": {
         "dev": "gulp",
         "zip": "gulp zip",
-        "test": "gscan ."
+        "test": "gscan .",
+        "preship": "yarn test",
+        "ship": "STATUS=$(git status --porcelain); echo $STATUS; if [ -z \"$STATUS\" ]; then yarn version && git push --follow-tags; fi"
     },
     "author": {
         "name": "Ghost Foundation",
@@ -31,28 +38,50 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/JaxsonWang/Casper-zh.git"
+        "url": "https://github.com/TryGhost/Casper.git"
     },
-    "bugs": "https://github.com/JaxsonWang/Casper-zh/issues",
+    "bugs": "https://github.com/TryGhost/Casper/issues",
+    "contributors": "https://github.com/TryGhost/Casper/graphs/contributors",
     "devDependencies": {
-        "autoprefixer": "^9.3.1",
-        "cssnano": "^4.1.7",
+        "autoprefixer": "6.3.6",
+        "beeper": "^1.1.1",
+        "cssnano": "3.7.1",
         "gscan": "^2.0.0",
         "gulp": "3.9.1",
         "gulp-filter": "5.1.0",
-        "gulp-livereload": "^4.0.0",
-        "gulp-postcss": "^8.0.0",
-        "gulp-rename": "^1.4.0",
-        "gulp-sourcemaps": "^2.6.4",
+        "gulp-livereload": "3.8.1",
+        "gulp-postcss": "6.1.1",
+        "gulp-sourcemaps": "1.6.0",
         "gulp-uglify": "3.0.1",
-        "gulp-util": "^3.0.8",
-        "gulp-watch": "^5.0.1",
-        "gulp-zip": "^4.2.0",
+        "gulp-watch": "4.3.8",
+        "gulp-zip": "4.0.0",
+        "gulp-rename": "^1.4.0",
         "postcss-color-function": "2.0.1",
         "postcss-custom-properties": "5.0.1",
-        "postcss-easy-import": "^3.0.0"
+        "postcss-easy-import": "1.0.1",
+        "pump": "3.0.0"
     },
     "config": {
-        "posts_per_page": 25
+        "posts_per_page": 25,
+        "image_sizes": {
+            "xxs": {
+                "width": 30
+            },
+            "xs": {
+                "width": 100
+            },
+            "s": {
+                "width": 300
+            },
+            "m": {
+                "width": 600
+            },
+            "l": {
+                "width": 1000
+            },
+            "xl": {
+                "width": 2000
+            }
+        }
     }
 }

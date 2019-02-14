@@ -3,7 +3,9 @@
 
 {{#author}}
 {{!-- Everything inside the #author tags pulls data from the author --}}
-<header class="site-header outer {{#if cover_image}}" style="background-image: url({{cover_image}}){{else}}no-cover{{/if}}">
+
+
+{{> header background=feature_image}} {{!--Special header.hbs partial to generate the <header> tag--}}
     <div class="inner">
         {{> "site-nav"}}
         <div class="site-header-content">
@@ -19,7 +21,7 @@
                     <div class="author-location">{{location}} <span class="bull">&bull;</span></div>
                 {{/if}}
                 <div class="author-stats">
-                    {{plural ../pagination.total empty=(t "没有文章") singular=(t "1篇文章") plural=(t "%篇文章")}} <span class="bull">&bull;</span>
+                    {{plural ../pagination.total empty='没有文章' singular='% 篇文章' plural='% 篇文章'}} <span class="bull">&bull;</span>
                 </div>
                 {{#if website}}
                     <a class="social-link social-link-wb" href="{{website}}" target="_blank" rel="noopener">{{> "icons/website"}}</a>
