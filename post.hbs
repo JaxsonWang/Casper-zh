@@ -75,7 +75,11 @@ into the {body} of the default.hbs template --}}
             <section class="post-copyright">
                 <ul>
                     <li class="post-copyright-author">
-                        <strong>本文作者： </strong>{{author }}</li>
+                        <strong>本文作者： </strong>
+                        {{#primary_author}}
+                            {{name}}
+                        {{/primary_author}}
+                    </li>
                     <li class="post-copyright-link">
                         <strong>本文链接：</strong>
                         <a href="{{url}}" title="{{title}}">{{@site.url}}{{url}}</a>

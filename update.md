@@ -1,5 +1,5 @@
 https://github.com/TryGhost/Casper/commits/master
 
-Upgrading Casper to 2.9.2
+Fix bug with embeds overflowing content width
 
-Commits on Feb 12, 2019
+Commits on Feb 18, 2019
