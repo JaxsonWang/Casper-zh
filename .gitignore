@@ -23,8 +23,6 @@ projectFilesBackup
 
 dist/
 
-.vscode/
-.idea/
-logs/
-node_modules/
-package-lock.json
+config.json
+changelog.md
+changelog.md.bk

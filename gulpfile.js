@@ -1,110 +1,91 @@
-var gulp = require('gulp');
-var pump = require('pump');
+const {series, watch, src, dest} = require('gulp');
+const pump = require('pump');
 
 // gulp plugins and utils
-var livereload = require('gulp-livereload');
-var postcss = require('gulp-postcss');
-var sourcemaps = require('gulp-sourcemaps');
-var zip = require('gulp-zip');
-var uglify = require('gulp-uglify');
-var filter = require('gulp-filter');
-var beeper = require('beeper');
-var rename = require("gulp-rename");
+const livereload = require('gulp-livereload');
+const postcss = require('gulp-postcss');
+const zip = require('gulp-zip');
+const uglify = require('gulp-uglify');
+const beeper = require('beeper');
+
+const rename = require("gulp-rename");
 
 // postcss plugins
-var autoprefixer = require('autoprefixer');
-var colorFunction = require('postcss-color-function');
-var cssnano = require('cssnano');
-var customProperties = require('postcss-custom-properties');
-var easyimport = require('postcss-easy-import');
+const autoprefixer = require('autoprefixer');
+const colorFunction = require('postcss-color-function');
+const cssnano = require('cssnano');
+const customProperties = require('postcss-custom-properties');
+const easyimport = require('postcss-easy-import');
 
-var nodemonServerInit = function () {
-    livereload.listen(1234);
-};
+function serve(done) {
+    livereload.listen();
+    done();
+}
 
-function handleError(done) {
+const handleError = (done) => {
     return function (err) {
         if (err) {
             beeper();
         }
         return done(err);
     };
-}
+};
 
-gulp.task('build', ['css', 'js'], function (/* cb */) {
-    return nodemonServerInit();
-});
-
-gulp.task('generate', ['css', 'js']);
-
-gulp.task('css', function (done) {
-    var processors = [
+function css(done) {
+    const processors = [
         easyimport,
-        customProperties,
+        customProperties({preserve: false}),
         colorFunction(),
         autoprefixer({browsers: ['last 2 versions']}),
         cssnano()
     ];
 
     pump([
-        gulp.src([
+        src([
             'assets/css/screen.css'
-        ]),
-        sourcemaps.init(),
+        ], {sourcemaps: true}),
         postcss(processors),
         rename({suffix: '.min'}),
-        sourcemaps.write('.', {
-            includeContent: true,
-            sourceRoot: '/source/css/'
-        }),
-        gulp.dest('assets/css/'),
+        dest('assets/css/', {sourcemaps: '../assets/css/'}),
         livereload()
     ], handleError(done));
-});
+}
 
-gulp.task('js', function (done) {
-    var jsFilter = filter(['**/*.js'], {restore: true});
-
+function js(done) {
     pump([
-        gulp.src([
+        src([
             'assets/js/infinitescroll.js',
             'assets/js/jquery.fitvids.js',
             'assets/js/casper.js'
-        ]),
-        sourcemaps.init(),
-        jsFilter,
+        ], {sourcemaps: true}),
         uglify(),
-        jsFilter.restore,
         rename({suffix: '.min'}),
-        sourcemaps.write('.', {
-            includeContent: true,
-            sourceRoot: '/source/js/'
-        }),
-        gulp.dest('assets/js/'),
+        dest('assets/js/', {sourcemaps: '../assets/js/'}),
         livereload()
     ], handleError(done));
-});
+}
 
-gulp.task('watch', function () {
-    gulp.watch('assets/css/**', ['css']);
-});
-
-gulp.task('zip', ['css', 'js'], function (done) {
-    var targetDir = 'dist/';
-    var themeName = require('./package.json').name;
-    var filename = themeName + '.zip';
+function zipper(done) {
+    const targetDir = 'dist/';
+    const themeName = require('./package.json').name;
+    const filename = themeName + '.zip';
 
     pump([
-        gulp.src([
+        src([
             '**',
             '!node_modules', '!node_modules/**',
             '!dist', '!dist/**'
         ]),
         zip(filename),
-        gulp.dest(targetDir)
+        dest(targetDir)
     ], handleError(done));
-});
+}
 
-gulp.task('default', ['build'], function () {
-    gulp.start('watch');
-});
+const watcherCSS = () => watch('assets/css/**', css);
+const watcherJS = () => watch('assets/js/**', js);
+const build = series(css, js);
+const dev = series(build, serve, watcherCSS, watcherJS);
+
+exports.build = build;
+exports.zip = series(build, zipper);
+exports.default = dev;

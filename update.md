@@ -1,5 +1,5 @@
 https://github.com/TryGhost/Casper/commits/master
 
-Fix bug with embeds overflowing content width
+v2.9.6
 
-Commits on Feb 18, 2019
+Commits on Mar 19, 2019
