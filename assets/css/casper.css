@@ -163,3 +163,114 @@
         font-size: 12px;
     }
 }
+
+/**
+ * 搜索
+ */
+.ghost-search {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    z-index: 301;
+}
+
+.ghost-search label {
+    position: relative;
+    cursor: pointer;
+}
+
+.ghost-search #ghost-search-field {
+    outline: none;
+    -webkit-appearance: textfield;
+    box-sizing: content-box;
+    font-family: inherit;
+    font-size: 100%;
+    position: relative;
+}
+
+.ghost-search label svg {
+    position: absolute;
+    width: 28px;
+    z-index: 12;
+    margin: 3px;
+    padding: 3px;
+}
+
+.ghost-search input#ghost-search-field::-webkit-search-decoration,
+.ghost-search input#ghost-search-field::-webkit-search-cancel-button {
+    display: none;
+}
+
+.ghost-search input#ghost-search-field {
+    border: solid 1px var(--darkgrey);
+    border-radius: 30px;
+    transition: all .5s;
+    width: 32px;
+    height: 32px;
+    color: transparent;
+    cursor: pointer;
+}
+
+.ghost-search input#ghost-search-field:hover {
+    background-color: #fff;
+}
+
+.ghost-search input#ghost-search-field:focus {
+    width: 130px;
+    border-color: var(--darkgrey);
+    padding-left: 32px;
+    color: var(--darkgrey);
+    background-color: #fff;
+    cursor: auto;
+    border-radius: 30px;
+}
+
+.ghost-search input#ghost-search-field::placeholder {
+    color: transparent;
+}
+
+.ghost-search input#ghost-search-field:focus::placeholder {
+    color: inherit;
+}
+
+.ghost-search #ghost-search-results {
+    position: absolute;
+    width: 100%;
+    z-index: 310;
+}
+
+.ghost-search #ghost-search-results a {
+    display: block;
+    width: 40%;
+    margin: 0 auto;
+    color: #fff;
+    padding: 5px 0;
+    text-decoration: none;
+}
+
+@media (max-width: 900px) {
+    .ghost-search #ghost-search-results a {
+        width: 80%;
+    }
+}
+
+.ghost-search #ghost-search-results a:hover {
+    text-decoration: none;
+    color: rgba(255,255,255,.8);
+}
+
+.ghost-search #ghost-search-results a:first-child {
+    padding-top: 10px;
+}
+
+.search-cover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    z-index: 300;
+    background: var(--darkgrey);
+    overflow: hidden;
+    display: none;
+}

@@ -315,6 +315,23 @@
         loadScript('//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js');
         loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js');
 
+        // 配置搜索
+        var ghostSearch = new GhostSearch({
+            // key: '1c8b902ac09889962117d082e6',
+            // host: 'http://localhost:2368'
+            key: '99efee9603c92e5cd04501f069',
+            host: 'https://iiong.com'
+        });
+        // 搜索事件执行
+        $('#ghost-search-field').focus(function () {
+            $('#ghost-search-results').fadeIn(500);
+            $('.search-cover').fadeIn(500);
+            $('html').css('overflow-y','hidden')
+        }).blur(function () {
+            $('#ghost-search-results').fadeOut(500);
+            $('.search-cover').fadeOut(500);
+            $('html').css('overflow-y','scroll')
+        });
         console.log('已经动态加载资源：', loadFiles);
     });
 })(jQuery);

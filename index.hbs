@@ -13,6 +13,13 @@ into the {body} of the default.hbs template --}}
                 {{/if}}
             </h1>
             <h2 class="site-description">永远年轻，永远热泪盈眶</h2>
+            <div class="ghost-search">
+                <label for="ghost-search-field">
+                    {{> "icons/search"}}
+                    <input id="ghost-search-field" type="search" placeholder="搜索博文...">
+                </label>
+                <div id="ghost-search-results"></div>
+            </div>
         </div>
         {{> "site-nav"}}
     </div>

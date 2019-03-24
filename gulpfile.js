@@ -46,7 +46,7 @@ function css(done) {
         ], {sourcemaps: true}),
         postcss(processors),
         rename({suffix: '.min'}),
-        dest('assets/css/', {sourcemaps: '../assets/css/'}),
+        dest('assets/css/', {sourcemaps: '.'}),
         livereload()
     ], handleError(done));
 }
@@ -60,7 +60,7 @@ function js(done) {
         ], {sourcemaps: true}),
         uglify(),
         rename({suffix: '.min'}),
-        dest('assets/js/', {sourcemaps: '../assets/js/'}),
+        dest('assets/js/', {sourcemaps: '.'}),
         livereload()
     ], handleError(done));
 }
@@ -81,10 +81,12 @@ function zipper(done) {
     ], handleError(done));
 }
 
-const watcherCSS = () => watch('assets/css/**', css);
-const watcherJS = () => watch('assets/js/**', js);
+const watcherCSS = () => {
+    watch('assets/css/casper.css', css);
+    watch('assets/js/casper.js', js);
+};
 const build = series(css, js);
-const dev = series(build, serve, watcherCSS, watcherJS);
+const dev = series(build, serve, watcherCSS);
 
 exports.build = build;
 exports.zip = series(build, zipper);

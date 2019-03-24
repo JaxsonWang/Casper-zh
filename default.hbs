@@ -60,6 +60,9 @@
         <a href="javascript:" id="return-to-top">{{> "icons/gotop"}}</a>
     </div>
 
+    {{!-- Search Cover --}}
+    <div class="search-cover"></div>
+
     {{!-- The big email subscribe modal content --}}
     {{#if @labs.subscribers}}
     <div id="subscribe" class="subscribe-overlay">
@@ -90,6 +93,10 @@
     {{!-- jQuery + Fitvids, which makes all video embeds responsive --}}
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="{{asset "js/jquery.fitvids.min.js"}}"></script>
+
+    {{!--Ghost Search Library Support --}}
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/@tryghost/content-api/umd/content-api.min.js"></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/ghost-search/dist/ghost-search.min.js"></script>
 
     {{#if pagination.pages}}
         <script type="text/javascript" src="{{asset "js/infinitescroll.min.js"}}"></script>
