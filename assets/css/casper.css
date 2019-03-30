@@ -164,6 +164,15 @@
     }
 }
 
+.reading-date {
+    flex-shrink: 0;
+    color: var(--midgrey);
+    font-size: 1.2rem;
+    line-height: 33px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
 /**
  * 搜索
  */
@@ -190,9 +199,9 @@
 
 .ghost-search label svg {
     position: absolute;
-    width: 28px;
+    width: 25px;
     z-index: 12;
-    margin: 3px;
+    margin: 5px;
     padding: 3px;
 }
 
@@ -273,4 +282,74 @@
     background: var(--darkgrey);
     overflow: hidden;
     display: none;
+}
+
+/**
+ * 动画集合
+ */
+
+/*base code*/
+.animated {
+    -webkit-animation-duration: .3s;
+    animation-duration: .3s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+/*the animation definition*/
+@-webkit-keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0)
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none
+    }
+}
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        -ms-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0)
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none
+    }
+}
+.fadeInDown {
+    -webkit-animation-name: fadeInDown;
+    animation-name: fadeInDown
+}
+
+/*the animation definition*/
+@-webkit-keyframes fadeOutDown {
+    0% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0)
+    }
+}
+@keyframes fadeOutDown {
+    0% {
+        opacity: 1
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        -ms-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0)
+    }
+}
+.fadeOutDown {
+    -webkit-animation-name: fadeOutDown;
+    animation-name: fadeOutDown
 }

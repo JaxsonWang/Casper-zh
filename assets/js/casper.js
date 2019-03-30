@@ -9,18 +9,21 @@
      */
     $('#btn-modal').click(function () {
         $('#overlay').addClass('is-visible');
-        $('#modal').addClass('is-visible');
+        $('#modal').addClass('is-visible animated fadeInDown').removeClass('fadeOutDown');
+        $('html').css('overflow-y', 'hidden');
     });
     /**
      * 关闭捐赠弹窗
      */
     $('#close-btn').click(function () {
         $('#overlay').removeClass('is-visible');
-        $('#modal').removeClass('is-visible');
+        $('#modal').removeClass('is-visible animated fadeInDown').addClass('animated fadeOutDown');
+        $('html').css('overflow-y', 'scroll');
     });
     $('#overlay').click(function () {
         $('#overlay').removeClass('is-visible');
-        $('#modal').removeClass('is-visible');
+        $('#modal').removeClass('is-visible animated fadeInDown').addClass('animated fadeOutDown');
+        $('html').css('overflow-y', 'scroll');
     });
 
     /**
@@ -326,11 +329,11 @@
         $('#ghost-search-field').focus(function () {
             $('#ghost-search-results').fadeIn(500);
             $('.search-cover').fadeIn(500);
-            $('html').css('overflow-y','hidden')
+            $('html').css('overflow-y', 'hidden')
         }).blur(function () {
             $('#ghost-search-results').fadeOut(500);
             $('.search-cover').fadeOut(500);
-            $('html').css('overflow-y','scroll')
+            $('html').css('overflow-y', 'scroll')
         });
         console.log('已经动态加载资源：', loadFiles);
     });

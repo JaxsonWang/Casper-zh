@@ -54,7 +54,10 @@
             {{/foreach}}
             </ul>
 
-            <span class="reading-time">{{reading_time minute=(t "1分钟阅读") minutes=(t "%分钟阅读")}}</span>
+            <div class="post-info">
+                <span class="reading-time">{{reading_time minute=(t "1分钟阅读") minutes=(t "%分钟阅读")}}</span>
+                <span class="reading-date"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="YYYY年MM月DD日"}}</time></span>
+            </div>
 
         </footer>
 
