@@ -1,4 +1,4 @@
-const {series, watch, src, dest} = require('gulp');
+const {series, watch, src, dest, parallel} = require('gulp');
 const pump = require('pump');
 
 // gulp plugins and utils
@@ -30,6 +30,13 @@ const handleError = (done) => {
         return done(err);
     };
 };
+
+function hbs(done) {
+    pump([
+        src(['*.hbs', 'partials/**/*.hbs', '!node_modules/**/*.hbs']),
+        livereload()
+    ], handleError(done));
+}
 
 function css(done) {
     const processors = [
@@ -81,12 +88,22 @@ function zipper(done) {
     ], handleError(done));
 }
 
-const watcherCSS = () => {
+// const watcherCSS = () => {
+//     watch('assets/css/casper.css', css);
+//     watch('assets/js/casper.js', js);
+// };
+// const build = series(css, js);
+// const dev = series(build, serve, watcherCSS);
+
+const cssWatcher = () => {
     watch('assets/css/casper.css', css);
     watch('assets/js/casper.js', js);
 };
+const hbsWatcher = () => watch(['*.hbs', 'partials/**/*.hbs', '!node_modules/**/*.hbs'], hbs);
+const watcher = parallel(cssWatcher, hbsWatcher);
 const build = series(css, js);
-const dev = series(build, serve, watcherCSS);
+const dev = series(build, serve, watcher);
+
 
 exports.build = build;
 exports.zip = series(build, zipper);
