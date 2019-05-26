@@ -13,6 +13,7 @@
 .floating-header-share-qq,
 .floating-header-share-wechat,
 .floating-header-share-weibo {
+    cursor: pointer;
     display: block;
     -ms-flex-align: center;
     -ms-grid-row-align: center;

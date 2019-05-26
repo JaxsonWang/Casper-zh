@@ -17,7 +17,7 @@
         {{> "icons/qq"}}
         </a>
 
-        <a class="floating-header-share-wechat" href="https://api.imjad.cn/qrcode/?&logo=&size=500&level=M&bgcolor=%23ffffff&fgcolor=%23000000%&text={{encode title}}"
+        <a class="floating-header-share-wechat" href="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data={{url absolute="true"}}"
         onclick="window.open(this.href, 'share-wechat', 'width=550,height=550');return false;">
         {{> "icons/wechat"}}
         </a>

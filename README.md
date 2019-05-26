@@ -1,5 +1,23 @@
 # Casper
 
+该主题改自 Ghost 默认主题，集成中国本地化功能以及一些其他功能：
+
+- 代码高亮支持
+- 评论功能
+- 国内分享
+- 一键回到顶部
+- 文章搜索功能
+- 文章版权说明
+- 集成百度统计
+- 集成百度推送
+- 良好的SEO优化
+- 文章图箱功能
+- ...
+
+### 配置
+
+本来是想把可变变量导出集成一个脚本里，但对SEO不是很好。博客任何关键词利用文本全局搜索修改即可！
+
 The default theme for [Ghost](http://github.com/tryghost/ghost/). This is the latest development version of Casper. If you're just looking to download the latest release, head over to the [releases](https://github.com/TryGhost/Casper/releases) page.
 
 &nbsp;

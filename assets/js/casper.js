@@ -117,7 +117,6 @@
         };
         var script = null;
         script = document.createElement('script');
-        script.id = fileName.replace(/[\./]+/g, '-');
         script.type = 'text/javascript';
         script.src = fileName;
         script.onload = function () {
@@ -335,6 +334,7 @@
             $('.search-cover').fadeOut(500);
             $('html').css('overflow-y', 'scroll')
         });
+
         console.log('已经动态加载资源：', loadFiles);
     });
 })(jQuery);
