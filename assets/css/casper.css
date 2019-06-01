@@ -355,3 +355,12 @@
     -webkit-animation-name: fadeOutDown;
     animation-name: fadeOutDown
 }
+
+.post-full-meta-visitors {
+    color: #26a8ed;
+    text-decoration: none;
+}
+
+.post-full-meta-visitors i{
+    font-style: normal;
+}

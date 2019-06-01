@@ -18,6 +18,18 @@
 
 本来是想把可变变量导出集成一个脚本里，但对SEO不是很好。博客任何关键词利用文本全局搜索修改即可！
 
+**评论：**
+
+打开`/assets/js/casper.js`修改207行的`appId`和`appKey`字段修改为自己的，具体设置请参考：[Valine文档](https://valine.js.org/configuration.html#appId)
+
+**网站统计：**
+
+打开`/assets/js/casper.js`修改195行的`https://hm.baidu.com/hm.js?37d3bf3116f041cb10bd1d890e65bcfc`，将里面的字符串替换成自己的统计代码即可。
+
+**网站搜索：**
+
+打开`/assets/js/casper.js`修改259行的`key`字段，该字段从ghost程序获取：`ghost-admin/Integrations/Add custom integration`，新建获取得到`Content API Key`字段名赋值即可，参考：[ghost-search](https://github.com/HauntedThemes/ghost-search#step-3---setup-a-custom-integration)
+
 The default theme for [Ghost](http://github.com/tryghost/ghost/). This is the latest development version of Casper. If you're just looking to download the latest release, head over to the [releases](https://github.com/TryGhost/Casper/releases) page.
 
 &nbsp;

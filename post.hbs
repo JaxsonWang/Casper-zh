@@ -23,6 +23,11 @@ into the {body} of the default.hbs template --}}
                     {{#primary_tag}}
                         <span class="date-divider">/</span> <a href="{{url}}">{{name}}</a>
                     {{/primary_tag}}
+                    <span class="date-divider">/</span>
+                    <span id="{{url}}" class="leancloud-visitors post-full-meta-visitors" data-flag-title="{{title}}">
+                        <i class="post-meta-item-text">阅读量 </i>
+                        <i class="leancloud-visitors-count"></i>
+                    </span>
                 </section>
                 <h1 class="post-full-title">{{title}}</h1>
             </header>
