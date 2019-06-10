@@ -1,5 +1,5 @@
 https://github.com/TryGhost/Casper/commits/master
 
-Added livereload for .hbs files
+2.10.2
 
-Commits on Apr 15, 2019
+Commits on Jun 4, 2019
