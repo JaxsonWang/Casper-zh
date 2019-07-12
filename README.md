@@ -30,6 +30,13 @@
 
 打开`/assets/js/casper.js`修改259行的`key`字段，该字段从ghost程序获取：`ghost-admin/Integrations/Add custom integration`，新建获取得到`Content API Key`字段名赋值即可，参考：[ghost-search](https://github.com/HauntedThemes/ghost-search#step-3---setup-a-custom-integration)
 
+**更换语法高亮 Prism 主题风格：**
+打开`/assets/js/casper.js`修改226行的`loadCSS('//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism-tomorrow.min.css')`样式表地址，替换自己想要的样式即可。
+
+官方：[Prism.js Themes](https://prismjs.com/download.html)
+第三方：[Prism.js-Style](https://github.com/JaxsonWang/Prism.js-Style)
+
+
 修改过的文件需要重新编译下：
 
 ```bash

@@ -33,7 +33,7 @@
         var checkExist = setInterval(function () {
             if ($(window.location.hash).length) {
                 $('html, body').animate(
-                    {scrollTop: $(window.location.hash).offset().top - 90},
+                    { scrollTop: $(window.location.hash).offset().top - 90 },
                     1000
                 );
                 clearInterval(checkExist);
@@ -198,46 +198,46 @@
 
         //valine评论支持
         loadScript('//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js', function () {
-                loadScript(
-                    'https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js',
-                    function () {
-                        if (document.getElementById('vcomments') !== null) {
-                            new Valine({
-                                el: '#vcomments',
-                                appId: 'rEDT0uBB2LEdndoJ4od2SlKf-gzGzoHsz',
-                                appKey: 'lmX57j7hrYGCHROA72tBUIXq',
-                                notify: true,
-                                verify: true,
-                                avatar: 'mm',
-                                visitor: true, // 文章访问量统计
-                                highlight: true, // 代码高亮
-                                recordIP: true, // 是否记录评论者IP
-                                placeholder: '请您理智发言，共建美好社会！'
-                            });
-                        }
+            loadScript(
+                'https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js',
+                function () {
+                    if (document.getElementById('vcomments') !== null) {
+                        new Valine({
+                            el: '#vcomments',
+                            appId: 'rEDT0uBB2LEdndoJ4od2SlKf-gzGzoHsz',
+                            appKey: 'lmX57j7hrYGCHROA72tBUIXq',
+                            notify: true,
+                            verify: true,
+                            avatar: 'mm',
+                            visitor: true, // 文章访问量统计
+                            highlight: true, // 代码高亮
+                            recordIP: true, // 是否记录评论者IP
+                            placeholder: '请您理智发言，共建美好社会！'
+                        });
                     }
-                );
-            });
+                }
+            );
+        });
         //图箱支持
         loadScript('//cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js', function () {
-                mediumZoom(document.querySelectorAll('.post-full-content .post-content img'));
-            });
+            mediumZoom(document.querySelectorAll('.post-full-content .post-content img'));
+        });
         //Prism高亮支持
         loadCSS('//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism-tomorrow.min.css');
         loadScript('//cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js', function () {
             loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js', function () {
-                    //将html代码块支持高亮
-                    $('.post-content pre code').attr('class', function (i, clazz) {
-                        if (clazz !== undefined) {
-                            return clazz.replace(/language-html/g, 'language-markup');
-                        }
-                    });
-                    //设置高亮语言样式文件地址
-                    if (window.Prism !== 'undefined') {
-                        Prism.plugins.autoloader.languages_path = '//cdn.jsdelivr.net/npm/prismjs/components/';
-                        Prism.highlightAll();
+                //将html代码块支持高亮
+                $('.post-content pre code').attr('class', function (i, clazz) {
+                    if (clazz !== undefined) {
+                        return clazz.replace(/language-html/g, 'language-markup');
                     }
+                });
+                //设置高亮语言样式文件地址
+                if (window.Prism !== 'undefined') {
+                    Prism.plugins.autoloader.languages_path = '//cdn.jsdelivr.net/npm/prismjs/components/';
+                    Prism.highlightAll();
                 }
+            }
             );
         });
         //行号
