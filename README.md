@@ -30,6 +30,8 @@
 
 打开`/assets/js/casper.js`修改259行的`key`字段，该字段从ghost程序获取：`ghost-admin/Integrations/Add custom integration`，新建获取得到`Content API Key`字段名赋值即可，参考：[ghost-search](https://github.com/HauntedThemes/ghost-search#step-3---setup-a-custom-integration)
 
+---
+
 The default theme for [Ghost](http://github.com/tryghost/ghost/). This is the latest development version of Casper. If you're just looking to download the latest release, head over to the [releases](https://github.com/TryGhost/Casper/releases) page.
 
 &nbsp;

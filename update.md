@@ -1,5 +1,5 @@
 https://github.com/TryGhost/Casper/commits/master
 
-2.10.2
+2.10.3
 
-Commits on Jun 4, 2019
+Commits on Jul 1, 2019
