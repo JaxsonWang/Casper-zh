@@ -18,7 +18,7 @@
 
 本来是想把可变变量导出集成一个脚本里，但对SEO不是很好。博客任何关键词利用文本全局搜索修改即可！
 
-**评论：**
+**评论系统：**
 
 打开`/assets/js/casper.js`修改207行的`appId`和`appKey`字段修改为自己的，具体设置请参考：[Valine文档](https://valine.js.org/configuration.html#appId)
 
@@ -29,6 +29,21 @@
 **网站搜索：**
 
 打开`/assets/js/casper.js`修改259行的`key`字段，该字段从ghost程序获取：`ghost-admin/Integrations/Add custom integration`，新建获取得到`Content API Key`字段名赋值即可，参考：[ghost-search](https://github.com/HauntedThemes/ghost-search#step-3---setup-a-custom-integration)
+
+修改过的文件需要重新编译下：
+
+```bash
+npm install # 确保依赖文件安装好
+npm run pretest # 编译新的生产文件
+```
+
+### 开发
+
+```bash
+npm install
+
+npm run dev
+```
 
 ---
 
