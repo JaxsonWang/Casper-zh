@@ -270,6 +270,18 @@
             $('html').css('overflow-y', 'scroll')
         });
 
+        // 监听点击链接时间，非本站链接进行新标签打开
+        $(document).on("click",'a',function(event){
+            var link = event.target.href; // 完整链接
+            var host = event.target.hostname;
+            if(/^https?:\/\/(([a-zA-Z0-9_-])+(\.)?)*(:\d+)?(\/((\.)?(\?)?=?&?[a-zA-Z0-9_-](\?)?)*)*$/i.test(link)) {
+                if(host !== window.location.hostname) {
+                    event.preventDefault();
+                    window.open(event.target.href)
+                }
+            }
+        });
+
         console.log('已经动态加载资源：', loadFiles);
     });
 })(jQuery);
