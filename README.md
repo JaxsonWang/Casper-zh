@@ -38,6 +38,9 @@
 
 第三方：[Prism.js-Style](https://github.com/JaxsonWang/Prism.js-Style)
 
+**配置广告推广：**
+
+现有文章在文章页页脚配置，请打开`post.hbs`文件，搜索`post-google-adsense`字段，如有需求在这里面配置即可。不需要把整个`dom`删除即可。
 
 修改过的文件需要重新编译下：
 
@@ -68,7 +71,7 @@ The default theme for [Ghost](http://github.com/tryghost/ghost/). This is the la
 
 Ghost uses a simple templating language called [Handlebars](http://handlebarsjs.com/) for its themes.
 
-We've documented our default theme pretty heavily so that it should be fairly easy to work out what's going on just by reading the code and the comments. Once you feel comfortable with how everything works, we also have full [theme API documentation](https://themes.ghost.org) which explains every possible Handlebars helper and template.
+We've documented our default theme pretty heavily so that it should be fairly easy to work out what's going on just by reading the code and the comments. Once you feel comfortable with how everything works, we also have full [theme API documentation](https://ghost.org/docs/api/handlebars-themes/) which explains every possible Handlebars helper and template.
 
 **The main files are:**
 
