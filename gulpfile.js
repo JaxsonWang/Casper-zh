@@ -89,22 +89,12 @@ function zipper(done) {
     ], handleError(done));
 }
 
-// const watcherCSS = () => {
-//     watch('assets/css/casper.css', css);
-//     watch('assets/js/casper.js', js);
-// };
-// const build = series(css, js);
-// const dev = series(build, serve, watcherCSS);
-
-const cssWatcher = () => {
-    watch('assets/css/casper.css', css);
-    watch('assets/js/casper.js', js);
-};
+const cssWatcher = () => watch(['assets/css/casper.css', 'assets/css/prism.css'], css);
+const jsWatcher = () => watch(['assets/js/casper.js'], js);
 const hbsWatcher = () => watch(['*.hbs', 'partials/**/*.hbs', '!node_modules/**/*.hbs'], hbs);
-const watcher = parallel(cssWatcher, hbsWatcher);
+const watcher = parallel(cssWatcher, jsWatcher, hbsWatcher);
 const build = series(css, js);
 const dev = series(build, serve, watcher);
-
 
 exports.build = build;
 exports.zip = series(build, zipper);

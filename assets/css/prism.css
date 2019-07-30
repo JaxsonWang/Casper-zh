@@ -125,3 +125,15 @@ pre[class*="language-"] {
 :not(pre) > code[class*="language-"], pre[class*="language-"] {
   background: #fff;
 }
+
+.post-content div.code-toolbar>.toolbar {
+  opacity: 1;
+}
+
+.post-content div.code-toolbar>.toolbar a,
+.post-content div.code-toolbar>.toolbar button,
+.post-content div.code-toolbar>.toolbar span {
+  color: #000;
+  font-size: .8em;
+  box-shadow: none;
+}

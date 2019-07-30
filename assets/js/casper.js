@@ -282,6 +282,16 @@
       }
     });
 
+    // Google 广告配置
+    loadScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', function () {
+      (adsbygoogle = window.adsbygoogle || []).push({});
+      console.log('Google广告加载完毕。嘤嘤嘤，别把本站广告屏蔽了哟！');
+      if (adsbygoogle.loaded || window.adsbygoogle.loaded) {
+        // 当谷歌广告没有被屏蔽的时候 - 删除提示语
+        $('.shielding-ads-tips').remove();
+      }
+    });
+
     console.log('已经动态加载资源：', loadFiles);
   });
 })(jQuery);
