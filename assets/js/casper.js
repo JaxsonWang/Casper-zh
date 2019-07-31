@@ -158,6 +158,98 @@
     }
   }
 
+  //valine评论支持
+  loadScript('//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js', function () {
+    loadScript(
+      'https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js',
+      function () {
+        if (document.getElementById('vcomments') !== null) {
+          new Valine({
+            el: '#vcomments',
+            appId: 'rEDT0uBB2LEdndoJ4od2SlKf-gzGzoHsz',
+            appKey: 'lmX57j7hrYGCHROA72tBUIXq',
+            notify: true,
+            verify: true,
+            avatar: 'mm',
+            visitor: true, // 文章访问量统计
+            highlight: true, // 代码高亮
+            recordIP: true, // 是否记录评论者IP
+            placeholder: '请您理智发言，共建美好社会！'
+          });
+        }
+      }
+    );
+  });
+  //图箱支持
+  loadScript('//cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js', function () {
+    mediumZoom(document.querySelectorAll('.post-full-content .post-content img'));
+  });
+  //Prism高亮支持
+  // loadCSS('//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism-tomorrow.min.css');
+  loadScript('//cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js', function () {
+    loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js', function () {
+        //将html代码块支持高亮
+        $('.post-content pre code').attr('class', function (i, clazz) {
+          if (clazz !== undefined) {
+            return clazz.replace(/language-html/g, 'language-markup');
+          }
+        });
+        //设置高亮语言样式文件地址
+        if (window.Prism !== 'undefined') {
+          Prism.plugins.autoloader.languages_path = '//cdn.jsdelivr.net/npm/prismjs/components/';
+          Prism.highlightAll();
+        }
+      }
+    );
+  });
+  //行号
+  loadCSS('//cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css');
+  loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js');
+  //支持行号显示
+  $('.post-content pre').addClass('line-numbers');
+  //显示语言或者粘贴
+  loadCSS('//cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.css');
+  loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js');
+  loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/show-language/prism-show-language.min.js');
+  loadScript('//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js');
+  loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js');
+
+  // Google 广告配置
+  loadScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', function () {
+    $('.adsbygoogle[data-ad-client]').map(function (item, index) {
+      (adsbygoogle = window.adsbygoogle || []).push({});
+    });
+    console.log('Google广告加载完毕。嘤嘤嘤，别把本站广告屏蔽了哟！');
+    if (adsbygoogle.loaded || window.adsbygoogle.loaded) {
+      // 当谷歌广告没有被屏蔽的时候 - 删除提示语
+      $('.shielding-ads-tips').remove();
+    }
+  });
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5781009105744977",
+    enable_page_level_ads: true
+  });
+
+  // Google分析
+  loadScript('https://www.googletagmanager.com/gtag/js?id=UA-141063659-1', function () {
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+    gtag('config', 'UA-141063659-1');
+  });
+
+  // 百度统计
+  loadScript('https://hm.baidu.com/hm.js?37d3bf3116f041cb10bd1d890e65bcfc');
+
+  // 百度推送
+  loadScript('https://zz.bdstatic.com/linksubmit/push.js');
+
+  console.log('已经动态加载资源：', loadFiles);
+
   $(document).ready(function () {
     /**
      * 回到顶部
@@ -178,79 +270,6 @@
         500
       );
     });
-
-    //百度推送
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    } else {
-      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var bdPush = document.getElementsByTagName('script')[0];
-    bdPush.parentNode.insertBefore(bp, bdPush);
-
-    //百度统计
-    var hm = document.createElement('script');
-    hm.src = 'https://hm.baidu.com/hm.js?37d3bf3116f041cb10bd1d890e65bcfc';
-    var bdhmt = document.getElementsByTagName('script')[0];
-    bdhmt.parentNode.insertBefore(hm, bdhmt);
-
-    //valine评论支持
-    loadScript('//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js', function () {
-      loadScript(
-        'https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js',
-        function () {
-          if (document.getElementById('vcomments') !== null) {
-            new Valine({
-              el: '#vcomments',
-              appId: 'rEDT0uBB2LEdndoJ4od2SlKf-gzGzoHsz',
-              appKey: 'lmX57j7hrYGCHROA72tBUIXq',
-              notify: true,
-              verify: true,
-              avatar: 'mm',
-              visitor: true, // 文章访问量统计
-              highlight: true, // 代码高亮
-              recordIP: true, // 是否记录评论者IP
-              placeholder: '请您理智发言，共建美好社会！'
-            });
-          }
-        }
-      );
-    });
-    //图箱支持
-    loadScript('//cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js', function () {
-      mediumZoom(document.querySelectorAll('.post-full-content .post-content img'));
-    });
-    //Prism高亮支持
-    // loadCSS('//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism-tomorrow.min.css');
-    loadScript('//cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js', function () {
-      loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js', function () {
-          //将html代码块支持高亮
-          $('.post-content pre code').attr('class', function (i, clazz) {
-            if (clazz !== undefined) {
-              return clazz.replace(/language-html/g, 'language-markup');
-            }
-          });
-          //设置高亮语言样式文件地址
-          if (window.Prism !== 'undefined') {
-            Prism.plugins.autoloader.languages_path = '//cdn.jsdelivr.net/npm/prismjs/components/';
-            Prism.highlightAll();
-          }
-        }
-      );
-    });
-    //行号
-    loadCSS('//cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css');
-    loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js');
-    //支持行号显示
-    $('.post-content pre').addClass('line-numbers');
-    //显示语言或者粘贴
-    loadCSS('//cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.css');
-    loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js');
-    loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/show-language/prism-show-language.min.js');
-    loadScript('//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js');
-    loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js');
 
     // 配置搜索
     var ghostSearch = new GhostSearch({
@@ -281,17 +300,5 @@
         }
       }
     });
-
-    // Google 广告配置
-    loadScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', function () {
-      (adsbygoogle = window.adsbygoogle || []).push({});
-      console.log('Google广告加载完毕。嘤嘤嘤，别把本站广告屏蔽了哟！');
-      if (adsbygoogle.loaded || window.adsbygoogle.loaded) {
-        // 当谷歌广告没有被屏蔽的时候 - 删除提示语
-        $('.shielding-ads-tips').remove();
-      }
-    });
-
-    console.log('已经动态加载资源：', loadFiles);
   });
 })(jQuery);
