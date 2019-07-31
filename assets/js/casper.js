@@ -271,16 +271,16 @@
       );
     });
 
-    // 配置搜索
-    var ghostSearch = new GhostSearch({
-      // key: '1c8b902ac09889962117d082e6',
-      // host: 'http://localhost:2368'
-      key: '99efee9603c92e5cd04501f069',
-      host: 'https://iiong.com'
-    });
     // 搜索事件执行
     var searchDom = $('#ghost-search-field');
-    if(searchDom !== null) {
+    if(searchDom.length !== 0) {
+      // 配置搜索
+      var ghostSearch = new GhostSearch({
+        // key: '1c8b902ac09889962117d082e6',
+        // host: 'http://localhost:2368'
+        key: '99efee9603c92e5cd04501f069',
+        host: 'https://iiong.com'
+      });
       searchDom.focus(function () {
         $('#ghost-search-results').fadeIn(500);
         $('.search-cover').fadeIn(500);
