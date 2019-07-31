@@ -279,15 +279,18 @@
       host: 'https://iiong.com'
     });
     // 搜索事件执行
-    $('#ghost-search-field').focus(function () {
-      $('#ghost-search-results').fadeIn(500);
-      $('.search-cover').fadeIn(500);
-      $('html').css('overflow-y', 'hidden')
-    }).blur(function () {
-      $('#ghost-search-results').fadeOut(500);
-      $('.search-cover').fadeOut(500);
-      $('html').css('overflow-y', 'scroll')
-    });
+    var searchDom = $('#ghost-search-field');
+    if(searchDom !== null) {
+      searchDom.focus(function () {
+        $('#ghost-search-results').fadeIn(500);
+        $('.search-cover').fadeIn(500);
+        $('html').css('overflow-y', 'hidden')
+      }).blur(function () {
+        $('#ghost-search-results').fadeOut(500);
+        $('.search-cover').fadeOut(500);
+        $('html').css('overflow-y', 'scroll')
+      });
+    }
 
     // 监听点击链接时间，非本站链接进行新标签打开
     $(document).on("click", 'a', function (event) {
