@@ -952,6 +952,10 @@ Usage (In Ghost editor):
   line-height: 1.5em;
 }
 
+.post-full-content pre ::selection {
+  color: color(var(--midgrey) l(-25%));
+}
+
 .post-full-content pre code {
   padding: 0;
   font-size: inherit;
