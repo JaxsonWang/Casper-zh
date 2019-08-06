@@ -97,7 +97,7 @@
   }
 
   //valine评论支持
-  loadScript('//cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js', function () {
+  loadScript('https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js', function () {
     loadScript(
       'https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js',
       function () {
@@ -119,13 +119,13 @@
     );
   });
   //图箱支持
-  loadScript('//cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js', function () {
+  loadScript('https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js', function () {
     mediumZoom(document.querySelectorAll('.post-full-content .post-content img'));
   });
   //Prism高亮支持
-  // loadCSS('//cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism-tomorrow.min.css');
-  loadScript('//cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js', function () {
-    loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js', function () {
+  // loadCSS('https://cdn.jsdelivr.net/npm/prismjs@1.15.0/themes/prism-tomorrow.min.css');
+  loadScript('https://cdn.jsdelivr.net/npm/prismjs/components/prism-core.min.js', function () {
+    loadScript('https://cdn.jsdelivr.net/npm/prismjs/plugins/autoloader/prism-autoloader.min.js', function () {
         //将html代码块支持高亮
         $('.post-content pre code').attr('class', function (i, clazz) {
           if (clazz !== undefined) {
@@ -134,23 +134,23 @@
         });
         //设置高亮语言样式文件地址
         if (window.Prism !== 'undefined') {
-          Prism.plugins.autoloader.languages_path = '//cdn.jsdelivr.net/npm/prismjs/components/';
+          Prism.plugins.autoloader.languages_path = 'https://cdn.jsdelivr.net/npm/prismjs/components/';
           Prism.highlightAll();
         }
       }
     );
   });
   //行号
-  loadCSS('//cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css');
-  loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js');
+  loadCSS('https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.css');
+  loadScript('https://cdn.jsdelivr.net/npm/prismjs/plugins/line-numbers/prism-line-numbers.min.js');
   //支持行号显示
   $('.post-content pre').addClass('line-numbers');
   //显示语言或者粘贴
-  loadCSS('//cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.css');
-  loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js');
-  loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/show-language/prism-show-language.min.js');
-  loadScript('//cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js');
-  loadScript('//cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js');
+  loadCSS('https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.css');
+  loadScript('https://cdn.jsdelivr.net/npm/prismjs/plugins/toolbar/prism-toolbar.min.js');
+  loadScript('https://cdn.jsdelivr.net/npm/prismjs/plugins/show-language/prism-show-language.min.js');
+  loadScript('https://cdn.jsdelivr.net/npm/clipboard/dist/clipboard.min.js');
+  loadScript('https://cdn.jsdelivr.net/npm/prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js');
 
   // Google 广告配置
   loadScript('https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js', function () {
