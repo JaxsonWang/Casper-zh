@@ -26,7 +26,6 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none
-
 }
 
 /* Code blocks */
@@ -127,6 +126,7 @@ pre[class*="language-"] {
 
 .post-content div.code-toolbar>.toolbar {
   opacity: 1;
+  top: 0;
 }
 
 .post-content div.code-toolbar>.toolbar a,

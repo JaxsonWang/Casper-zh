@@ -18,75 +18,75 @@ const customProperties = require('postcss-custom-properties');
 const easyimport = require('postcss-easy-import');
 
 function serve(done) {
-    livereload.listen();
-    done();
+  livereload.listen();
+  done();
 }
 
 const handleError = (done) => {
-    return function (err) {
-        if (err) {
-            beeper();
-        }
-        return done(err);
-    };
+  return function (err) {
+    if (err) {
+      beeper();
+    }
+    return done(err);
+  };
 };
 
 function hbs(done) {
-    pump([
-        src(['*.hbs', 'partials/**/*.hbs', '!node_modules/**/*.hbs']),
-        livereload()
-    ], handleError(done));
+  pump([
+    src(['*.hbs', 'partials/**/*.hbs', '!node_modules/**/*.hbs']),
+    livereload()
+  ], handleError(done));
 }
 
 function css(done) {
-    const processors = [
-        easyimport,
-        customProperties({preserve: false}),
-        colorFunction(),
-        // autoprefixer({browsers: ['last 2 versions']}),
-        autoprefixer(),
-        cssnano()
-    ];
+  const processors = [
+    easyimport,
+    customProperties({preserve: false}),
+    colorFunction(),
+    // autoprefixer({browsers: ['last 2 versions']}),
+    autoprefixer(),
+    cssnano()
+  ];
 
-    pump([
-        src([
-            'assets/css/screen.css'
-        ], {sourcemaps: true}),
-        postcss(processors),
-        rename({suffix: '.min'}),
-        dest('assets/css/', {sourcemaps: '.'}),
-        livereload()
-    ], handleError(done));
+  pump([
+    src([
+      'assets/css/screen.css'
+    ], {sourcemaps: true}),
+    postcss(processors),
+    rename({suffix: '.min'}),
+    dest('assets/css/', {sourcemaps: '.'}),
+    livereload()
+  ], handleError(done));
 }
 
 function js(done) {
-    pump([
-        src([
-            'assets/js/infinitescroll.js',
-            'assets/js/jquery.fitvids.js',
-            'assets/js/casper.js'
-        ], {sourcemaps: true}),
-        uglify(),
-        rename({suffix: '.min'}),
-        dest('assets/js/', {sourcemaps: '.'}),
-        livereload()
-    ], handleError(done));
+  pump([
+    src([
+      'assets/js/infinitescroll.js',
+      'assets/js/jquery.fitvids.js',
+      'assets/js/casper.js'
+    ], {sourcemaps: true}),
+    uglify(),
+    rename({suffix: '.min'}),
+    dest('assets/js/', {sourcemaps: '.'}),
+    livereload()
+  ], handleError(done));
 }
 
 function zipper(done) {
-    const targetDir = 'dist/';
-    const themeName = require('./package.json').name;
-    const filename = themeName + '.zip';
+  const targetDir = 'dist/';
+  const themeName = require('./package.json').name;
+  const filename = themeName + '.zip';
 
-    pump([
-        src([
-            '**',
-            '!node_modules', '!node_modules/**',
-            '!dist', '!dist/**'
-        ]),
-        zip(filename),
-        dest(targetDir)
-    ], handleError(done));
+  pump([
+    src([
+      '**',
+      '!node_modules', '!node_modules/**',
+      '!dist', '!dist/**'
+    ]),
+    zip(filename),
+    dest(targetDir)
+  ], handleError(done));
 }
 
 const cssWatcher = () => watch(['assets/css/casper.css', 'assets/css/prism.css'], css);

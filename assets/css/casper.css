@@ -372,25 +372,10 @@
   position: relative;
 }
 
-.post-list-google-adsense .has-google-adsense {
-  z-index: 1;
-}
-
-.post-list-google-adsense .shielding-ads-tips {
-  z-index: 2;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-.post-list-google-adsense .shielding-ads-tips .tips-image {
-  padding: 2em;
-}
-
-.post-list-google-adsense .shielding-ads-tips .tips-desc {
-  padding: 0 2em 2em;
-}
-
 .post-google-adsense {
   padding:20px 0 10px
+}
+
+.post-list-google-adsense .shielding-ads-tips .post-card-content-link {
+  padding-bottom: 25px;
 }
